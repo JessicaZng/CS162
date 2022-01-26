@@ -1,4 +1,5 @@
 fun take with n, l =
-  fill_this_out
+    if ((isnil l) || (n < 1)) then Nil
+    else (!l) @ ((take (n-1)) #l)
 in
 take
