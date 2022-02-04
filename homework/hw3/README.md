@@ -28,11 +28,8 @@ Install the required OCaml dependencies from your homework 3 folder using:
 
 ```bash
 # Make sure you run these from the homework 3 folder!
-opam install -y --deps-only .
-opam install -y --deps-only --with-test .
+opam install dune linenoise alcotest
 ```
-you can safely ignore the warning messages as long as the packages are installed
-successfully.
 
 The files are set up to be built with the [`dune` build
 tool](https://dune.readthedocs.io/en/stable/), which the above command will help
@@ -132,5 +129,3 @@ Some of the things we will be looking for during grading are:
 * Your `eval` function correctly raises a `Stuck` exception if no evaluation
   rule matches. We reserve the right to deduct points if you hardcode Stuck
   exceptions to avoid doing the rest of the assignment properly.
-* Alpha-renaming is performed correctly during substitution. This is worth a
-  relatively low but still significant number of points.

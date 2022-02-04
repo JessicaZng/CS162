@@ -27,11 +27,11 @@ Textbook (optional): [Types and Programming Languages](https://www.amazon.com/Ty
 | 1/20 | OCaml crash course III & Introduction to λ<sup>+</sup>                        | [lec5](lectures/lecture4.pdf) | | AS2 | AS1 |
 | 1/25 | Lambda Calculus I                        | [lec5](lectures/lecture5.pdf) | 11.12 | | |
 | 1/27 | Lambda Calculus II                       | [lec6](lectures/lecture6.pdf) | 8.1,8.2, 9.1-9.3 | AS3 | AS2 |
-| 2/1  | Operational Semantics I                                      | [lec8](#) | | | |
-| 2/3  | Type checking I                                | [lec9](#) | 10.3 | AS4 | AS3|
-| 2/8  | Type checking II                               | [lec10](#) | | | |
-| 2/10 | Recursion, Higher Order Functions              | [lec11](#) | | | |
-| 2/15 | TBD                                            | | | | |
+| 2/1  | Operational Semantics I                                      | [lec7](lectures/lecture7.pdf) | | | |
+| 2/3  | Operational Semantics II                                | [lec8](lectures/lecture8.pdf) | 10.3 | AS4 | AS3|
+| 2/8  | Operational Semantics III                               | [lec10](#) | | | |
+| 2/10 | Type Checking I              | [lec11](#) | | | |
+| 2/15 | Type Checking II                                            | | | | |
 | 2/17 | Type Inference & Polymorphism I                | [lec12](#) | 22.1-22.4 |AS5 | AS4 |
 | 2/22 | Type Inference & Polymorphism II               | [lec13](#) | 22.7 | | |
 | 2/24 | Environments and Closures                      | [lec14](#) | |AS6 | AS5 |
