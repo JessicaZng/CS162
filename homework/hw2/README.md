@@ -2,11 +2,7 @@
 
 **Due Thursday January 27, 2022 at 11:59pm (pacific time)**
 
-In this homework assignment, you will use λ<sup>+</sup> to implement three
-functions. The purpose
-of this assignment is to help you get familiar with λ<sup>+</sup> so that you
-will be able to implement an interpreter for it later. It will also help you
-practice recursion which will be vital for programming the upcoming assignments.
+In this homework assignment, you will use λ<sup>+</sup> to implement three functions. The purpose of this assignment is to help you get familiar with λ<sup>+</sup> so that you will be able to implement an interpreter for it later. It will also help you practice recursion which will be vital for programming the upcoming assignments.
 
 Note: We will set up Gradescope later this week. In the meantime, you can get started by downloading the language manual from GauchoSpace and reading it, and start using the interpreter and writing your own tests to do the assignment.
 

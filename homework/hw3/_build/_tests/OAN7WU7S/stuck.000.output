@@ -1,0 +1,7 @@
+[33mASSERT[0m evaluated to 1
+[31mFAIL[0m evaluated to 1
+Raised at Alcotest_engine__Test.check_err in file "src/alcotest-engine/test.ml", line 157, characters 20-48
+Called from Dune__exe__Test.check_stuck in file "test.ml", line 28, characters 4-54
+Called from Alcotest_engine__Core.Make.protect_test.(fun) in file "src/alcotest-engine/core.ml", line 180, characters 17-23
+Called from Alcotest_engine__Monad.Identity.catch in file "src/alcotest-engine/monad.ml", line 24, characters 31-35
+

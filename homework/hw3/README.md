@@ -2,21 +2,15 @@
 
 **Due Thursday, February 3 at 11:59 pm (pacific time)**
 
-In HW3 and HW4, you will use OCaml to implement the big-step operational
-semantics for λ<sup>+</sup>. In this assignment, you will implement the subset of λ<sup>+</sup> involving arithmetic, boolean, and list operations, while let-bindings and functions will be the main focus of the next assignment.
+In HW3 and HW4, you will use OCaml to implement the big-step operational semantics for λ<sup>+</sup>. In this assignment, you will implement the subset of λ<sup>+</sup> involving arithmetic, boolean, and list operations, while let-bindings and functions will be the main focus of the next assignment.
 
 
 ## Overview
 
-* You will need to refer to section on operational semantics of the manual 
-  posted on Gauchospace.
-* The files required for this assignment are located in this folder. In
-  particular, you will need to write all your code in [`eval.ml`](eval.ml).
-  The only function you need to implement is `eval`.
+* You will need to refer to section on operational semantics of the manual posted on Gauchospace.
+* The files required for this assignment are located in this folder. In particular, you will need to write all your code in [`eval.ml`](eval.ml).The only function you need to implement is `eval`.
 * You will need to write about 50 lines of code for this assignment.
-* To test your code, you can either compare your output against the reference
-  interpreter or use the unit test helpers defined in `test.ml`. We will not be
-  scoring how you test your code.
+* To test your code, you can either compare your output against the reference interpreter or use the unit test helpers defined in `test.ml`. We will not be scoring how you test your code.
 
 
 ### Setting up
@@ -31,9 +25,7 @@ Install the required OCaml dependencies from your homework 3 folder using:
 opam install dune linenoise alcotest
 ```
 
-The files are set up to be built with the [`dune` build
-tool](https://dune.readthedocs.io/en/stable/), which the above command will help
-install for you.
+The files are set up to be built with the [`dune` build tool](https://dune.readthedocs.io/en/stable/), which the above command will help install for you.
 * Run `make` to compile your code. This just invokes `dune build` to compile the project.
 * Run `make test` to compile and execute the unit tests located in `test.ml`.
 * Run `make dist` to compile the interpreter and copy it to `./lamp`.
@@ -42,12 +34,9 @@ install for you.
 
 ### Organization of the code
 
-In this folder, you will be provided a version of the reference interpreter
-source code without the evaluation part implemented. The files are:
+In this folder, you will be provided a version of the reference interpreter source code without the evaluation part implemented. The files are:
 * [`ast.ml`](ast.ml): Contains the AST definition and some helper functions.
-* [`parser.mly`](parser.mly) and [`scanner.mll`](scanner.mly): Contains the
-  parser and scanner definitions. You do not need to look these files, but you
-  are welcome to if you are interested in how parsing works.
+* [`parser.mly`](parser.mly) and [`scanner.mll`](scanner.mly): Contains the parser and scanner definitions. You do not need to look these files, but you are welcome to if you are interested in how parsing works.
 * [`eval.ml`](eval.ml): This is the file which you will need to complete for this assignment.
 * [`repl.ml`](repl.ml): Contains the code for the interpreter executable.
 * [`test.ml`](test.ml): Contains some sample unit tests.
@@ -75,16 +64,11 @@ You don't need to worry about the remaining subset of λ<sup>+</sup>, such as le
 
 ## Tips
 
-- You can test your code locally with unit tests (in `test.ml`) or compare the
-output against the reference interpreter (which may be buggy, so use your best
-judgment). To run your own interpreter interactively, run `dune exec ./repl.exe`. You can also interpret a λ<sup>+</sup> source file via `dune exec ./repl.exe -- <source-file>.lp`.
+- You can test your code locally with unit tests (in `test.ml`) or compare the output against the reference interpreter (which may be buggy, so use your best judgment). To run your own interpreter interactively, run `dune exec ./repl.exe`. You can also interpret a λ<sup>+</sup> source file via `dune exec ./repl.exe -- <source-file>.lp`.
 
-- The best way to construct test cases is to **make up some programs and
-then put together a derivation tree with pencil and paper**.
+- The best way to construct test cases is to **make up some programs and then put together a derivation tree with pencil and paper**.
 
-- `dune` conveniently has a feature to automatically recompile/retest your code
-whenever you make a change. To use it, run `dune build --watch` or `dune
-runtests --watch`, respectively.
+- `dune` conveniently has a feature to automatically recompile/retest your code whenever you make a change. To use it, run `dune build --watch` or `dune runtests --watch`, respectively.
 
 - It is also possible to debug with `utop`. Assuming that you have installed it with `opam install utop`, you can do the following:
 command:
@@ -111,21 +95,11 @@ command:
 
 ## Submission and Scoring
 
-Submit `eval.ml` on Gradescope, where an autograder will run your code on a set
-of test cases. _You should test your code with your own test cases before
-submitting it to the autograder. The autograder will only tell you if you are
-missing anything; if you are failing some test cases, it will not tell you why.
-Blindly guessing solutions will waste a lot of your time._
+Submit `eval.ml` on Gradescope, where an autograder will run your code on a set of test cases. _You should test your code with your own test cases before submitting it to the autograder. The autograder will only tell you if you are missing anything; if you are failing some test cases, it will not tell you why. Blindly guessing solutions will waste a lot of your time._
 
 
-As outlined in the grading policy, your score for this assignment will be the
-percentage of test cases passed, plus whatever additional credit is awarded to
-you for partially correct solutions that demonstrate understanding of the course
-material.
+As outlined in the grading policy, your score for this assignment will be the percentage of test cases passed, plus whatever additional credit is awarded to you for partially correct solutions that demonstrate understanding of the course material.
 
 Some of the things we will be looking for during grading are:
-* Your `eval` function evaluates expressions to the correct values, as described
-  by the manual.
-* Your `eval` function correctly raises a `Stuck` exception if no evaluation
-  rule matches. We reserve the right to deduct points if you hardcode Stuck
-  exceptions to avoid doing the rest of the assignment properly.
+* Your `eval` function evaluates expressions to the correct values, as described by the manual.
+* Your `eval` function correctly raises a `Stuck` exception if no evaluation rule matches. We reserve the right to deduct points if you hardcode Stuck exceptions to avoid doing the rest of the assignment properly.
