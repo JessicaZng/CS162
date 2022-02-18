@@ -4,18 +4,22 @@ type binop = Add | Sub | Mul | Gt | Lt | And | Or | Eq
 (* AST of Lambda+ expressions *)
 type expr =
   | NumLit of int
-  | Var of string
+
   | Binop of expr * binop * expr
   | IfThenElse of expr * expr * expr
-  | LetBind of string * expr * expr
-  | Lambda of string * expr
-  | App of expr * expr
+
   | ListNil
   | ListCons of expr * expr
   | ListHead of expr
   | ListTail of expr
   | ListIsNil of expr
-  | Fix of expr
+  
+  (* hw 4 *)
+  | Var of string (* hw4 *)
+  | LetBind of string * expr * expr (* hw4 *)
+  | Lambda of string * expr (* hw4 *)
+  | App of expr * expr (* hw4 *)
+  | Fix of expr (* hw4 *)
 
 (* Pretty print binop as string *)
 let string_of_binop (op: binop) : string =

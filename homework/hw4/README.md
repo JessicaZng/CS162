@@ -2,28 +2,16 @@
 
 **Due Thursday, February 17 at 11:59 pm (pacific time)**
 
-In HW3 and HW4, you will use OCaml to implement the big-step
-operational semantics for λ<sup>+</sup>. In this assignment, you will
-implement the remainder of λ<sup>+</sup>, specifically lambdas, `let`,
-fixpoints, and function application. To implement this fragment of the
-language, you will need to implement substitution and alpha renaming.
+In HW3 and HW4, you will use OCaml to implement the big-step operational semantics for λ<sup>+</sup>. In this assignment, you will implement the remainder of λ<sup>+</sup>, specifically lambdas, `let`, fixpoints, and function application. To implement this fragment of the language, you will need to implement substitution and alpha renaming.
 
 
 ## Overview
 
-* You will need to refer to section on operational semantics of the manual 
-  posted on Gauchospace.
-* The files required for this assignment are located in this folder. In
-  particular, you will need to write all your code in [`eval.ml`](eval.ml).
-  You need to implement `eval`, `free_vars`, and `subst` functions.
-* You will need to write about 100 lines of code (on top of the 50 for
-  HW3) for this assignment.
-* To test your code, you can either compare your output against the reference
-  interpreter or use the unit test helpers defined in `test.ml`. We will not be
-  scoring how you test your code.
-* **This homework builds on top of homework 3, so you will need to
-  copy over your implementation for the evaluation rules covered in
-  homework 3 before starting this homework.**
+* You will need to refer to section on operational semantics of the manual posted on Gauchospace.
+* The files required for this assignment are located in this folder. In particular, you will need to write all your code in [`eval.ml`](eval.ml). You need to implement `eval`, `free_vars`, and `subst` functions.
+* You will need to write about 100 lines of code (on top of the 50 for HW3) for this assignment.
+* To test your code, you can either compare your output against the reference interpreter or use the unit test helpers defined in `test.ml`. We will not be scoring how you test your code.
+* **This homework builds on top of homework 3, so you will need to copy over your implementation for the evaluation rules covered in homework 3 before starting this homework.**
 
 
 ### Setting up
