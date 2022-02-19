@@ -26,9 +26,7 @@ Install the required OCaml dependencies from your homework 4 folder using:
 opam install dune linenoise alcotest
 ```
 
-The files are set up to be built with the [`dune` build
-tool](https://dune.readthedocs.io/en/stable/), which the above command will help
-install for you.
+The files are set up to be built with the [`dune` build tool](https://dune.readthedocs.io/en/stable/), which the above command will help install for you.
 * Run `make` to compile your code. This just invokes `dune build` to compile the project.
 * Run `make test` to compile and execute the unit tests located in `test.ml`.
 * Run `make dist` to compile the interpreter and copy it to `./lamp`.
@@ -37,20 +35,16 @@ install for you.
 
 ### Organization of the code
 
-In this folder, you will be provided a version of the reference interpreter
-source code without the evaluation part implemented. The files are:
+In this folder, you will be provided a version of the reference interpreter source code without the evaluation part implemented. The files are:
 * [`ast.ml`](ast.ml): Contains the AST definition and some helper functions.
-* [`parser.mly`](parser.mly) and [`scanner.mll`](scanner.mly): Contains the
-  parser and scanner definitions. You do not need to look these files, but you
-  are welcome to if you are interested in how parsing works.
+* [`parser.mly`](parser.mly) and [`scanner.mll`](scanner.mly): Contains the parser and scanner definitions. You do not need to look these files, but you are welcome to if you are interested in how parsing works.
 * [`eval.ml`](eval.ml): This is the file which you will need to complete for this assignment.
 * [`repl.ml`](repl.ml): Contains the code for the interpreter executable.
 * [`test.ml`](test.ml): Contains some sample unit tests.
 
 ## What you need to do
 
-The main goal is to translate the evaluation rules provided to you in the
-lectures/handout into OCaml code for the following subset of λ<sup>+</sup>:
+The main goal is to translate the evaluation rules provided to you in the lectures/handout into OCaml code for the following subset of λ<sup>+</sup>:
 ```ocaml
 type expr =
   | Var of string
@@ -60,67 +54,37 @@ type expr =
   | Fix of expr
 ```
 
-Some of these evaluation rules use substitution. So, you need to
-implement substitution with α-renaming.
+Some of these evaluation rules use substitution. So, you need to implement substitution with α-renaming.
 
-Similar to homework 3, you need to replace places marked with `todo ()`
-with your own code.  You need to implement the following functions for this
-purpose (the rules for those functions are also in the handout):
-- `free_vars : expr -> VarSet.t` takes an expression and returns the
-  set of free variables that are in that expression. The return type
-  is a set of strings. You can see [this
-  tutorial](https://ocaml.org/learn/tutorials/set.html) and [the API
-  documentation](https://ocaml.org/api/Set.S.html) for how to use sets
-  in OCaml. To access a set function like `mem`, you need to use
-  `VarSet.mem`. Some set functions you may need are `mem`,
-  `singleton`, `diff`, `empty`, and `union`.
+Similar to homework 3, you need to replace places marked with `todo ()` with your own code.  You need to implement the following functions for this purpose (the rules for those functions are also in the handout):
+- `free_vars : expr -> VarSet.t` takes an expression and returns the set of free variables that are in that expression. The return type is a set of strings. 
+  - You can see [this tutorial](https://ocaml.org/learn/tutorials/set.html) and [the API documentation](https://ocaml.org/api/Set.S.html) for how to use sets in OCaml. 
+  - To access a set function like `mem`, you need to use `VarSet.mem`. Some set functions you may need are `mem`, `singleton`, `diff`, `empty`, and `union`.
   
-You will need to implement alpha renaming for this assignment. To be
-consistent with the autograder, whenever you need to alpha-rename some
-argument `y` of an abstraction `\y. e`, you should rename `y` to `yn`
-where `n` is the smallest natural number such that using `yn` as an
-argument will not capture any variables. You will also need to alpha
-rename in let-bound variables, if necessary. Here are some examples of
-alpha renaming:
-* `(lambda x, y. x y) (lambda x. y)` will evaluate to `(lambda y0. (lambda x. y) y0)`.
-* `(lambda x, y. x y y0) (lambda x. y)` will evaluate to `(lambda y1. ((lambda x. y) y1) y0)`
-* `(lambda f, y. let y0 = 5 in y) (lambda x. y)` will evaluate to `lambda y0. let y00 = 5 in y0`
-* `(lambda z. lambda y. let x = 5 in z) (lambda y. x)` will evaluate to `lambda y. let x0 = 5 in lambda y. x`
+- You will need to implement alpha renaming for this assignment. To be consistent with the autograder, whenever you need to alpha-rename some argument `y` of an abstraction `\y. e`, you should rename `y` to `yn` where `n` is the smallest natural number such that using `yn` as an argument will not capture any variables. You will also need to alpha rename in let-bound variables, if necessary. Here are some examples of alpha renaming:
+  * `(lambda x, y. x y) (lambda x. y)` will evaluate to `(lambda y0. (lambda x. y) y0)`.
+  * `(lambda x, y. x y y0) (lambda x. y)` will evaluate to `(lambda y1. ((lambda x. y) y1) y0)`
+  * `(lambda f, y. let y0 = 5 in y) (lambda x. y)` will evaluate to `lambda y0. let y00 = 5 in y0`
+  * `(lambda z. lambda y. let x = 5 in z) (lambda y. x)` will evaluate to `lambda y. let x0 = 5 in lambda y. x`
 
-We suggest implementing a helper function for finding the next
-available name and testing it separately.
+We suggest implementing a helper function for finding the next available name and testing it separately.
 
 ## Tips
 
-- This assignment may seem overwhelming, but it is really just a collection of
-  small tasks.
-- There is no rule for variables, so a free variable should get
-  stuck.
+- This assignment may seem overwhelming, but it is really just a collection of small tasks.
+- There is no rule for variables, so a free variable should get stuck.
 - You should start with implementing `Lambda` as it is an easier case.
-- The remaining rules require substitution, so you should implement
-  `free_vars` and `subst`. You can implement `subst` without
-  α-renaming first, then add α-renaming later on.
-- Once you tested your `free_vars` and `subst` functions, the next
-  easiest case is `App`. After implementing it, you can test it on
-  some small cases like `(lambda x. x + x) 5`.
+- The remaining rules require substitution, so you should implement `free_vars` and `subst`. You can implement `subst` without α-renaming first, then add α-renaming later on.
+- Once you tested your `free_vars` and `subst` functions, the next easiest case is `App`. After implementing it, you can test it on some small cases like `(lambda x. x + x) 5`.
 - Then, you can proceed to the `Let` case which is slightly more complicated.
 - If you haven't implemented α renaming yet. You should implement it now.
-- Finally, you should implement the `Fix` case. Note that you cannot
-  write `fix` using the concrete syntax, you need to use `fun f with arg1, ..., argn = e1 in e2` syntax to create a recursive
-  function. This gets translated to `let f = fix (lambda f. lambda arg1. ... lambda argn. e1) in e2`.
+- Finally, you should implement the `Fix` case. Note that you cannot write `fix` using the concrete syntax, you need to use `fun f with arg1, ..., argn = e1 in e2` syntax to create a recursive function. This gets translated to `let f = fix (lambda f. lambda arg1. ... lambda argn. e1) in e2`.
 
-- You can test your code locally with unit tests (in `test.ml`) or compare the
-output against the reference interpreter (which may be buggy, so use your best
-judgment). To run your own interpreter interactively, run `dune exec ./repl.exe`. You can also interpret a λ<sup>+</sup> source file via `dune exec ./repl.exe -- <source-file>.lp`.
+- You can test your code locally with unit tests (in `test.ml`) or compare the output against the reference interpreter (which may be buggy, so use your best judgment). To run your own interpreter interactively, run `dune exec ./repl.exe`. You can also interpret a λ<sup>+</sup> source file via `dune exec ./repl.exe -- <source-file>.lp`.
 
-- The best way to construct test cases is to **make up some programs
-and then put together a derivation tree with pencil and paper**. You
-can then check your reasoning against the λ<sup>+</sup> interpreter
-available to you.
+- The best way to construct test cases is to **make up some programs and then put together a derivation tree with pencil and paper**. You can then check your reasoning against the λ<sup>+</sup> interpreter available to you.
 
-- `dune` conveniently has a feature to automatically recompile/retest your code
-whenever you make a change. To use it, run `dune build --watch` or `dune
-runtests --watch`, respectively.
+- `dune` conveniently has a feature to automatically recompile/retest your code whenever you make a change. To use it, run `dune build --watch` or `dune runtests --watch`, respectively.
 
 - It is also possible to debug with `utop`. Assuming that you have installed it with `opam install utop`, you can do the following:
 command:

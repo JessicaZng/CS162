@@ -41,9 +41,14 @@ let rec eval (e : expr) : expr =
     match e with
     (* Things you  need to implement in hw4 *)
     | Var s -> Var s
-    | LetBind (s, e1, e2) -> todo()
     | Lambda (s, e1) -> Lambda (s, e1)
-    | App (e1, e2) -> todo()
+    | App (e1, e2) -> 
+      let e1' = eval e1 in 
+      match e1' with 
+      Lambda (s, e) -> (subst s e2 e)
+      | _ -> im_stuck "let"
+
+    | LetBind (s, e1, e2) -> todo()
     | Fix e -> todo()
 
 
@@ -107,7 +112,7 @@ let rec eval (e : expr) : expr =
     )
     (* --- End of hw3 --- *)
 
-    | _ -> im_stuck "the end"
+    | _ -> im_stuck "end"
   with
   | Stuck msg -> im_stuck (msg ^ "\nin expression " ^ string_of_expr e)
   ;;
