@@ -32,9 +32,7 @@ let rec free_vars (e : expr) : VarSet.t =
 
 (** Performs the substitution [x -> e1]e2 *)
 let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
-match e2 with
-Var s -> 
-;;
+  
 
 
 (** Evaluates e. You need to copy over your
@@ -48,18 +46,12 @@ let rec eval (e : expr) : expr =
     | Lambda (s, e1) -> Lambda (s, e1)
     
     | App (e1, e2) -> 
-      let e1' = eval e1 in 
-      match e1' with 
-      Lambda (x, e) -> (
-        let x' = eval x in 
-        match x' with 
-        Var s -> (subst s (eval e2) e)
-        | _ -> im_stuck "parameter x is not a Var"
+      let e1' = eval e1 in match e1' with Lambda (x, e) -> (
+        let x' = eval x in match x with Var s -> (subst s (eval e2) e)
       )
-      | _ -> im_stuck "e1 is not in lambda x.e format"
+      | _ -> im_stuck "let"
 
-    | LetBind (s, e1, e2) -> App (Lambda (s, e2), e1)
-    
+    | LetBind (s, e1, e2) -> (subst s (eval e1) e2)
     | Fix e -> 
       let e' = eval e in match e' with Lambda (f, e'') -> (subst s (Fix e') e')
 

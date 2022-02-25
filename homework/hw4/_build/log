@@ -1,0 +1,136 @@
+# dune build repl.exe
+# OCAMLPARAM: unset
+# Workspace root: /Users/jessica/Desktop/CS162/CS162/homework/hw4
+$ /usr/bin/getconf _NPROCESSORS_ONLN > /var/folders/jb/5k4377610dzgkwd9zs90wnjw0000gn/T/dune18b620.output 2> /dev/null
+# Auto-detected concurrency: 4
+# disable binary cache
+$ /Users/jessica/.opam/4.13.0/bin/ocamlc.opt -config > /var/folders/jb/5k4377610dzgkwd9zs90wnjw0000gn/T/dunec8c8a7.output
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dyn
+#  ; merlin = true
+#  ; for_host = None
+#  ; fdo_target_exe = None
+#  ; build_dir = "default"
+#  ; toplevel_path = Some External "/Users/jessica/.opam/4.13.0/lib/toplevel"
+#  ; ocaml_bin = External "/Users/jessica/.opam/4.13.0/bin"
+#  ; ocaml = Ok External "/Users/jessica/.opam/4.13.0/bin/ocaml"
+#  ; ocamlc = External "/Users/jessica/.opam/4.13.0/bin/ocamlc.opt"
+#  ; ocamlopt = Ok External "/Users/jessica/.opam/4.13.0/bin/ocamlopt.opt"
+#  ; ocamldep = Ok External "/Users/jessica/.opam/4.13.0/bin/ocamldep.opt"
+#  ; ocamlmklib = Ok External "/Users/jessica/.opam/4.13.0/bin/ocamlmklib.opt"
+#  ; env =
+#      map
+#        { "DUNE_OCAML_HARDCODED" : "/Users/jessica/.opam/4.13.0/lib"
+#        ; "DUNE_OCAML_STDLIB" : "/Users/jessica/.opam/4.13.0/lib/ocaml"
+#        ; "DUNE_SOURCEROOT" :
+#            "/Users/jessica/Desktop/CS162/CS162/homework/hw4"
+#        ; "INSIDE_DUNE" :
+#            "/Users/jessica/Desktop/CS162/CS162/homework/hw4/_build/default"
+#        ; "MANPATH" :
+#            "/Users/jessica/Desktop/CS162/CS162/homework/hw4/_build/install/default/bin"
+#        ; "OCAMLFIND_IGNORE_DUPS_IN" :
+#            "/Users/jessica/Desktop/CS162/CS162/homework/hw4/_build/install/default/lib"
+#        ; "OCAMLPATH" :
+#            "/Users/jessica/Desktop/CS162/CS162/homework/hw4/_build/install/default/lib"
+#        ; "OCAMLTOP_INCLUDE_PATH" :
+#            "/Users/jessica/Desktop/CS162/CS162/homework/hw4/_build/install/default/lib/toplevel"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; findlib_path = [ External "/Users/jessica/.opam/4.13.0/lib" ]
+#  ; arch_sixtyfour = true
+#  ; natdynlink_supported = true
+#  ; supports_shared_libraries = true
+#  ; ocaml_config =
+#      { version = "4.13.0"
+#      ; standard_library_default = "/Users/jessica/.opam/4.13.0/lib/ocaml"
+#      ; standard_library = "/Users/jessica/.opam/4.13.0/lib/ocaml"
+#      ; standard_runtime = "the_standard_runtime_variable_was_deleted"
+#      ; ccomp_type = "cc"
+#      ; c_compiler = "cc"
+#      ; ocamlc_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread" ]
+#      ; ocamlc_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
+#      ; ocamlopt_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread" ]
+#      ; ocamlopt_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
+#      ; bytecomp_c_compiler =
+#          [ "cc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-pthread"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ]
+#      ; bytecomp_c_libraries = [ "-lm"; "-lpthread" ]
+#      ; native_c_compiler =
+#          [ "cc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-pthread"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ]
+#      ; native_c_libraries = [ "-lm" ]
+#      ; cc_profile = []
+#      ; architecture = "amd64"
+#      ; model = "default"
+#      ; int_size = 63
+#      ; word_size = 64
+#      ; system = "macosx"
+#      ; asm = [ "cc"; "-c"; "-Wno-trigraphs" ]
+#      ; asm_cfi_supported = true
+#      ; with_frame_pointers = false
+#      ; ext_exe = ""
+#      ; ext_obj = ".o"
+#      ; ext_asm = ".s"
+#      ; ext_lib = ".a"
+#      ; ext_dll = ".so"
+#      ; os_type = "Unix"
+#      ; default_executable_name = "a.out"
+#      ; systhread_supported = true
+#      ; host = "x86_64-apple-darwin20.3.0"
+#      ; target = "x86_64-apple-darwin20.3.0"
+#      ; profiling = false
+#      ; flambda = false
+#      ; spacetime = false
+#      ; safe_string = true
+#      ; exec_magic_number = "Caml1999X030"
+#      ; cmi_magic_number = "Caml1999I030"
+#      ; cmo_magic_number = "Caml1999O030"
+#      ; cma_magic_number = "Caml1999A030"
+#      ; cmx_magic_number = "Caml1999Y030"
+#      ; cmxa_magic_number = "Caml1999Z030"
+#      ; ast_impl_magic_number = "Caml1999M030"
+#      ; ast_intf_magic_number = "Caml1999N030"
+#      ; cmxs_magic_number = "Caml1999D030"
+#      ; cmt_magic_number = "Caml1999T030"
+#      ; natdynlink_supported = true
+#      ; supports_shared_libraries = true
+#      ; windows_unicode = false
+#      }
+#  }
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamldep.opt -modules -impl ast.ml) > _build/default/.lamp.objs/ast.ml.d
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamldep.opt -modules -impl eval.ml) > _build/default/.lamp.objs/eval.ml.d
+> File "eval.ml", line 122, characters 2-4:
+> 122 |   ;;
+>         ^^
+> Error: Syntax error
+[2]
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamlyacc parser.mly)
+> 37 shift/reduce conflicts.
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamllex -q -o scanner.ml scanner.mll)
+$ (cd _build/default && /bin/bash -c 'echo let date = \"unknown\" > build_metadata.ml')
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamldep.opt -modules -impl repl.ml) > _build/default/.repl.eobjs/repl.ml.d
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamldep.opt -modules -intf parser.mli) > _build/default/.lamp.objs/parser.mli.d
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamldep.opt -modules -impl parser.ml) > _build/default/.lamp.objs/parser.ml.d
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamldep.opt -modules -impl scanner.ml) > _build/default/.lamp.objs/scanner.ml.d
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .lamp.objs/byte -no-alias-deps -opaque -o .lamp.objs/byte/ast.cmo -c -impl ast.ml)
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamldep.opt -modules -impl build_metadata.ml) > _build/default/.repl.eobjs/build_metadata.ml.d
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .lamp.objs/byte -no-alias-deps -opaque -o .lamp.objs/byte/parser.cmi -c -intf parser.mli)
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I .lamp.objs/byte -no-alias-deps -opaque -o .lamp.objs/byte/scanner.cmo -c -impl scanner.ml)
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I .lamp.objs/byte -I .lamp.objs/native -intf-suffix .ml -no-alias-deps -opaque -o .lamp.objs/native/scanner.cmx -c -impl scanner.ml)
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I .lamp.objs/byte -I .lamp.objs/native -intf-suffix .ml -no-alias-deps -opaque -o .lamp.objs/native/ast.cmx -c -impl ast.ml)
+$ (cd _build/default && /Users/jessica/.opam/4.13.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -I .lamp.objs/byte -I .lamp.objs/native -intf-suffix .ml -no-alias-deps -opaque -o .lamp.objs/native/parser.cmx -c -impl parser.ml)
