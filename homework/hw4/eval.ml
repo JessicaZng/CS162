@@ -28,13 +28,13 @@ let assert_value e =
 
 (** Computes the set of free variables in the given expression *)
 let rec free_vars (e : expr) : VarSet.t =
-  failwith "TODO: homework" ;;
+  im_stuck "to-do"
 
 (** Performs the substitution [x -> e1]e2 *)
 let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
 match e2 with
-Var s -> 
-;;
+Var s -> if s = x then 
+| _ -> 
 
 
 (** Evaluates e. You need to copy over your
