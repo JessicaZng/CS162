@@ -17,10 +17,10 @@ type expr =
   | Var of string
   | Binop of expr * binop * expr
   | IfThenElse of expr * expr * expr
-  | LetBind of string * typ option * expr * expr
-  | Lambda of string * typ option * expr
+  | LetBind of string * typ option * expr * expr  (* ! *)
+  | Lambda of string * typ option * expr (* ! *)
   | App of expr * expr
-  | ListNil of typ option
+  | ListNil of typ option (* ! *)
   | ListCons of expr * expr
   | ListHead of expr
   | ListTail of expr

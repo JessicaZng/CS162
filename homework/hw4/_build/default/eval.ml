@@ -1,8 +1,5 @@
 open Ast
 
-(** Variable set. Based on OCaml standard library Set. *)
-module VarSet = Set.Make (String)
-
 (* Helper function for parsing an expression. Useful for testing. *)
 let parse (s: string) : Ast.expr =
   Parser.main Scanner.token (Lexing.from_string s)
@@ -26,13 +23,68 @@ let todo () = failwith "TODO"
 let assert_value e =
   if is_value e then () else im_stuck (string_of_expr e ^ " is not a value")
 
+(** Variable set. Based on OCaml standard library Set. *)
+module VarSet = Set.Make (String)
+
 (** Computes the set of free variables in the given expression *)
 let rec free_vars (e : expr) : VarSet.t =
-  failwith "TODO: homework" ;;
+  match e with
+  Var s -> VarSet.singleton s
+  | Lambda (s, e1) -> VarSet.diff (free_vars e1) (free_vars (Var s))
+  | App (e1, e2) -> VarSet.union (free_vars e1) (free_vars e2)
+  | LetBind (s, e1, e2) -> VarSet.union (free_vars e1) (VarSet.diff (free_vars e2) (free_vars (Var s)))
+  | Fix e -> free_vars e
+
+  | NumLit n -> VarSet.empty
+  | Binop (e1, op, e2) -> VarSet.union (free_vars e1) (free_vars e2)
+  | IfThenElse (e1, e2, e3) -> VarSet.union (VarSet.union (free_vars e1) (free_vars e2)) (free_vars e3)
+  | ListNil -> VarSet.empty
+  | ListCons (e1, e2) -> VarSet.union (free_vars e1) (free_vars e2)
+  | ListHead e -> free_vars e
+  | ListTail e -> free_vars e
+  | ListIsNil e -> free_vars e
+
+(* a helper function for finding the next available name *)
+let rec alpha_renaming (x : string) (n : int) (v : VarSet.t) : string =
+  if (VarSet.mem (x ^ (string_of_int n)) v)
+    then (alpha_renaming x (n+1) v)
+  else (x ^ (string_of_int n))
 
 (** Performs the substitution [x -> e1]e2 *)
 let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
+match e2 with
+Var s -> if s = x then e1 else e2
+(* [x->e1]/s. e21
+if x is bounded by s then do nothing
+else if s is in FV e1 then [x->e1]/s0. e21 of s0
+else subst x e1 e21
+*)
+| Lambda (s, e21) -> (
+  if s = x then Lambda (s, e21)  
+  else if (VarSet.mem s (free_vars e1)) 
+    then let s' = (alpha_renaming s 0 (VarSet.union (free_vars e1) (free_vars e21))) in 
+    (subst x e1 (Lambda (s', (subst s (Var s') e21))))
+  else Lambda (s, (subst x e1 e21))
+)
   
+| App (e21, e22) -> App ((subst x e1 e21), (subst x e1 e22))
+(* [x->e1]let s = e21 in e22 => [x->e1]/(s.e22 e21) => 
+ *)
+| LetBind (s, e21, e22) -> (
+  let e' = subst x e1 (App (Lambda (s, e22), e21)) in
+  match e' with
+  App (Lambda (s', e22'), e21') -> LetBind (s', e21', e22')
+  | _ -> im_stuck "x"
+  )
+| Fix e -> Fix (subst x e1 e)
+| NumLit n -> NumLit n
+| Binop (e21, op, e22) -> Binop ((subst x e1 e21), op, (subst x e1 e22))
+| IfThenElse (e21, e22, e23) -> IfThenElse ((subst x e1 e21), (subst x e1 e22), (subst x e1 e23))
+| ListNil -> ListNil
+| ListCons (e21, e22) -> ListCons ((subst x e1 e21), (subst x e1 e22))
+| ListHead e -> ListHead (subst x e1 e)
+| ListTail e -> ListTail (subst x e1 e)
+| ListIsNil e -> ListIsNil (subst x e1 e)
 
 
 (** Evaluates e. You need to copy over your
@@ -40,20 +92,24 @@ let rec subst (x : string) (e1 : expr) (e2 : expr) : expr =
 let rec eval (e : expr) : expr =
   try
     match e with
-    (* Things you  need to implement in hw4 *)
-    | Var s -> Var s
+    (* Things you need to implement in hw4 *)
+    Var s -> im_stuck "variable"
     
     | Lambda (s, e1) -> Lambda (s, e1)
     
-    | App (e1, e2) -> 
-      let e1' = eval e1 in match e1' with Lambda (x, e) -> (
-        let x' = eval x in match x with Var s -> (subst s (eval e2) e)
+    | App (e1, e2) -> (
+      match eval e1 with 
+        Lambda (s, e) -> eval (subst s (eval e2) e) 
+        | _ -> im_stuck "e1 is not in lambda x.e format"
       )
-      | _ -> im_stuck "let"
 
-    | LetBind (s, e1, e2) -> (subst s (eval e1) e2)
-    | Fix e -> 
-      let e' = eval e in match e' with Lambda (f, e'') -> (subst s (Fix e') e')
+    | LetBind (s, e1, e2) -> eval (App (Lambda (s, e2), e1))
+    
+    | Fix e -> (
+      match eval e with 
+      Lambda (f, e') -> eval (subst f (Fix (Lambda (f, e'))) e')
+      | _ -> im_stuck "not in lambda x.e format"
+    )
 
 
     (* --- Start of hw3 --- *)
