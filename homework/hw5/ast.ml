@@ -9,8 +9,6 @@ type typ =
   | TFun of typ * typ
   | TList of typ
   
-
-
 (** AST of Lambda+ expressions *)
 type expr =
   | NumLit of int
@@ -27,7 +25,6 @@ type expr =
   | ListIsNil of expr
   | Fix of expr
   
-
 
 (** Pretty print binop as string *)
 let string_of_binop (op: binop) : string =

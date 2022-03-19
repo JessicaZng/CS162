@@ -1,0 +1,4 @@
+Generated constraints:
+List[X0] = Int
+Int = Int
+[33mASSERT[0m type_error

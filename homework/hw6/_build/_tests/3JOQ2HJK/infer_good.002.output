@@ -1,0 +1,4 @@
+Generated constraints:
+X0 = List[X1]
+X0 = List[X1]
+[33mASSERT[0m typecheck
